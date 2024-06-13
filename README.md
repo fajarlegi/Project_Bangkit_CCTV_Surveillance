@@ -12,14 +12,14 @@ surveillance like people and car counting. Outputs will be summarized in a dashb
 
 
 ### Progress:
-Week 1 (6-12 May 2024)       : [Link_Presentation_Progress_Week1](https://www.canva.com/design/DAGEscLPmKs/AVIaMktneaLPchZ62FUQEw/edit?utm_content=DAGEscLPmKs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+Week 1 (6-12 May 2024)       : [Link_Presentation_Progress_Week1](https://drive.google.com/file/d/1_IkihP9XPxAZS209k_VZpMs9AiZjP29I/view?usp=sharing)
 
 Week 2 (13-19 May 2024)      : [Link_Presentation_Progress_Week2](https://www.canva.com/design/DAGFTihi9JM/Ru3QYG42a6BeTnGJ7iDuLw/edit?utm_content=DAGFTihi9JM&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
-Week 3 (20-26 May 2024)      : [Link_Presentation_Progress_Week2](https://www.canva.com/design/DAGFTihi9JM/Ru3QYG42a6BeTnGJ7iDuLw/edit?utm_content=DAGFTihi9JM&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+Week 3 (20-26 May 2024)      : [Link_Presentation_Progress_Week3](https://drive.google.com/file/d/1N2KuLVsg7RPRF-2l4OWyxCnALW3AeFo1/view?usp=sharing)
 
-Week 4 (27 May-2 June 2024)  : -
+Week 4 (27 May-2 June 2024)  : [Link_Presentation_Progress_Week4](https://drive.google.com/file/d/1XKJZ6U97bjggk8h375P6W392ANCJTQxX/view?usp=sharing)
 
-Week 5 (3-9 June 2024)       : -
+Week 5 (3-9 June 2024)       : [Link_Presentation_Progress_Week5](https://drive.google.com/file/d/1PuEJzsWxhRJ6sNbhZ3HE8Ny8vTrZX-X9/view?usp=sharing)
 
-Week 6 (10-16 June 2024)     : -
+Week 6 (10-16 June 2024)     : [Link_Presentation_Progress_Week6](https://drive.google.com/file/d/1PV6NnklNmXdC8hd1a1Y5b0INL_rnFN8q/view?usp=sharing)
