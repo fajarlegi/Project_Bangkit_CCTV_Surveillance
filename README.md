@@ -1,10 +1,68 @@
 # Project Bangkit CCTV Surveillance
+This repository contains the source code and documentation for our project aimed at enhancing surveillance management using AI technology for Surveillance Management.
 
 ### Description about project:
 SKOTA by Lintasarta aids local public sectors in delivering superior Smart City services through comprehensive solutions that include planning, implementation, and community socialization.
 A key component, Surveillance Management, is being enhanced to incorporate advanced AI functionalities for monitoring and analytics. The project involves deploying Agent DVR on PCs, providing tools like CCTV cameras, 
 and integrating AI providers such as OpenAI, DeepStack AI, and CodeProject.AI. The scope includes detecting crime behaviors at ATMs, managing resources through smoke and fire detection, geofencing, and public area 
 surveillance like people and car counting. Outputs will be summarized in a dashboard report for actionable insights. The project also aims to build proficiency in programming, AI technology integration, and web-based programming.
+
+---
+
+## Steps to Replicate
+
+1. **Clone the Repository:**
+    
+    ```sh
+    git clone https://github.com/fajarlegi/Project_Bangkit_CCTV_Surveillance
+    cd Project_Bangkit_SKOTA
+    ```
+    
+2. **Setup Environment:**
+    - Ensure you have Python 3.8 installed.
+    - Set up a virtual environment (recommended)
+        
+        ```sh
+        python -m venv venv
+        source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+        ```
+        
+    - Install dependencies:
+        
+        ```sh
+        pip install -r requirements.txt
+        ```
+        
+3. **Configure Flask Application:**
+    - Copy `.env.example` to `.env` and configure the environment variables as needed (database connection, API keys, etc.).
+
+4. **Run the Application:**
+    
+    ```sh
+    flask run
+    ```
+    
+    The application will start running locally. Access it at `http://localhost:5000`.
+    
+5. **Training and Running YOLOv8n Model:**
+    - Follow instructions in `model/README.md` for setting up and training the YOLOv8n model using PyTorch.
+
+6. **Accessing the Dashboard:**
+    - Navigate to the dashboard at `http://localhost:5000/dashboard` to view real-time surveillance data, analytics, and reports.
+
+7. **Contributing and Development:**
+    - Fork the repository, make changes, and submit pull requests for review.
+    - Follow coding standards and document your changes thoroughly.
+
+## Additional Notes
+
+- **Data Management:** Ensure proper handling and storage of surveillance data, adhering to data privacy and security regulations.
+- **Deployment:** For production deployment, consider using Docker containers or a cloud platform like AWS or Azure.
+- **Support:** For questions or issues, please contact our team at [contact@email.com].
+
+
+---
+## Project Timeline and Progress
 
 ### Document:
 - [Timeline_Project_Capstone_Project](https://docs.google.com/spreadsheets/d/1gClWp3O0dwVf5K6_-nKF12SCQCPe9tpL4sn_hZkDBUk/edit?usp=sharing)
