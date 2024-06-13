@@ -1,4 +1,4 @@
-# Project Bangkit SKOTA
+# Project Bangkit CCTV Surveillance
 
 ### Description about project:
 SKOTA by Lintasarta aids local public sectors in delivering superior Smart City services through comprehensive solutions that include planning, implementation, and community socialization.
