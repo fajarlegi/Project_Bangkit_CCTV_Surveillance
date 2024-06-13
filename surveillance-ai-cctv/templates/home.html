@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block title %}Home Skota Surveillance{% endblock %}
+{% block content %}
+ <!-- Main Content -->
+ <div class="container mt-5">
+    <h2>Surveillance Dashboard Overview</h2>
+
+    <!-- Summary Cards -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <h5 class="card-title">Total Detections</h5>
+                    <p class="card-text" id="total-detections">...</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-success">
+                <div class="card-body">
+                    <h5 class="card-title">Criminal Detections</h5>
+                    <p class="card-text" id="criminal-detections">...</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-warning">
+                <div class="card-body">
+                    <h5 class="card-title">Resources Area Detections</h5>
+                    <p class="card-text" id="resources-detections">...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <h3 class="mt-5">Recent Activity</h3>
+    <ul class="list-group" id="recent-activity">
+        <!-- Recent activity items will be inserted here -->
+    </ul>
+
+    <!-- Charts -->
+    <h3 class="mt-5">Detection Trends</h3>
+    <div>
+        <canvas id="detection-trend-chart" width="400" height="200"></canvas>
+    </div>
+</div>
+
+<!-- INI PENGGANGGU SIALAN-->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
+<!-- INI PENGGANGGU -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Mock data for demonstration purposes
+    const totalDetections = 123;
+    const criminalDetections = 45;
+    const resourcesDetections = 67;
+    const recentActivity = [
+        { id: 1, timestamp: '2024-06-10 12:34:56', type: 'Criminal', details: 'Detail 1' },
+        { id: 2, timestamp: '2024-06-10 13:45:22', type: 'Resources Area', details: 'Detail 2' },
+        { id: 3, timestamp: '2024-06-10 14:56:33', type: 'Public Area', details: 'Detail 3' },
+    ];
+
+    // Update summary cards
+    document.getElementById('total-detections').textContent = totalDetections;
+    document.getElementById('criminal-detections').textContent = criminalDetections;
+    document.getElementById('resources-detections').textContent = resourcesDetections;
+
+    // Update recent activity
+    const recentActivityList = document.getElementById('recent-activity');
+    recentActivity.forEach(activity => {
+        const listItem = document.createElement('li');
+        listItem.className = 'list-group-item';
+        listItem.textContent = `${activity.timestamp}: ${activity.type} - ${activity.details}`;
+        recentActivityList.appendChild(listItem);
+    });
+
+    // Chart data
+    const ctx = document.getElementById('detection-trend-chart').getContext('2d');
+    const detectionTrendChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['June 1', 'June 2', 'June 3', 'June 4', 'June 5', 'June 6', 'June 7', 'June 8', 'June 9', 'June 10'],
+            datasets: [{
+                label: 'Detections',
+                data: [12, 19, 3, 5, 2, 3, 9, 10, 15, 21],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+                fill: false
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

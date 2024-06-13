@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h2>Log Detection</h2>
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label for="datepicker" class="form-label">Filter by Date:</label>
+            <input type="text" id="datepicker" class="form-control">
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Message</th>
+                <th>Created</th>
+                <th>Capture</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in crime_data %}
+            <tr>
+                <td>{{ entry['id'] }}</td>
+                <td>{{ entry['msg'] }}</td>
+                <td>{{ entry['created_at'] }}</td>
+                <td><a href="{{ entry['url'] }}" target="_blank"><i class="bi bi-eye eye-icon"></i></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
