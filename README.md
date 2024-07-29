@@ -14,8 +14,8 @@ surveillance like people and car counting. Outputs will be summarized in a dashb
 1. **Clone the Repository:**
     
     ```sh
-    git clone https://github.com/fajarlegi/Project_Bangkit_CCTV_Surveillance
-    cd Project_Bangkit_SKOTA
+    git clone https://gitlab.com/lintasartasolutions/AI/survilleance-cctv-ai.git
+    cd survilleance-cctv-ai
     ```
     
 2. **Setup Environment:**
@@ -32,27 +32,35 @@ surveillance like people and car counting. Outputs will be summarized in a dashb
         ```sh
         pip install -r requirements.txt
         ```
-        
-3. **Configure Flask Application:**
-    - Copy `.env.example` to `.env` and configure the environment variables as needed (database connection, API keys, etc.).
 
-4. **Run the Application:**
+3. **Run the Application:**
     
     ```sh
-    flask run
+    python app.py
     ```
     
-    The application will start running locally. Access it at `http://localhost:5000`.
+    The application will start running locally. Access it at `http://127.0.0.1:5001`.
     
-5. **Training and Running YOLOv8n Model:**
+4. **Training and Running YOLOv8n Model:**
     - Follow instructions in `model/README.md` for setting up and training the YOLOv8n model using PyTorch.
 
-6. **Accessing the Dashboard:**
-    - Navigate to the dashboard at `http://localhost:5000/dashboard` to view real-time surveillance data, analytics, and reports.
+5. **Accessing the Dashboard:**
+    - Navigate to the dashboard at `http://127.0.0.1:5001/home` to view real-time surveillance data, analytics, and reports.
 
-7. **Contributing and Development:**
+6. **Contributing and Development:**
     - Fork the repository, make changes, and submit pull requests for review.
     - Follow coding standards and document your changes thoroughly.
+
+## Mockup
+### Dashboard Views
+<img src="mockup/dash1fix.png" alt="Dashboard 1" style="margin-right: 20px;"/>
+<img src="mockup/dash2fix.png" alt="Dashboard 2"/>
+
+### Dashboard Design
+<img src="mockup/resourcefix.png" alt="Resource Management"/>
+
+### Logs Design
+<img src="mockup/logsresource.png" alt="Logs and Resources"/>
 
 ## Additional Notes
 
@@ -81,3 +89,5 @@ Week 4 (27 May-2 June 2024)  : [Link_Presentation_Progress_Week4](https://drive.
 Week 5 (3-9 June 2024)       : [Link_Presentation_Progress_Week5](https://drive.google.com/file/d/1PuEJzsWxhRJ6sNbhZ3HE8Ny8vTrZX-X9/view?usp=sharing)
 
 Week 6 (10-16 June 2024)     : [Link_Presentation_Progress_Week6](https://drive.google.com/file/d/1PV6NnklNmXdC8hd1a1Y5b0INL_rnFN8q/view?usp=sharing)
+
+

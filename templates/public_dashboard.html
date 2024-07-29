@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% block title %}Public Detection{% endblock %}
+{% block content %}
+<div class="container">
+    <div>
+        <h1>Public Detection Camera</h1>
+    </div>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="camera-tab" data-bs-toggle="tab" data-bs-target="#camera" type="button" role="tab" aria-controls="camera" aria-selected="true">Camera</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="logs-tab" data-bs-toggle="tab" data-bs-target="#logs" type="button" role="tab" aria-controls="logs" aria-selected="false">Logs</button>
+        </li>
+    </ul>
+    
+    <div class="tab-content" id="myTabContent">
+        <!-- Camera Tab Content -->
+        <div class="tab-pane fade show active" id="camera" role="tabpanel" aria-labelledby="camera-tab">
+            <!-- Camera Configuration Form -->
+            <form id="camera_form" action="{{ url_for('configure_camera') }}" method="post">
+                <div class="mb-3">
+                    <label for="camera_type" class="form-label">Select Camera Type:</label>
+                    <select class="form-select" id="camera_type" name="camera_type">
+                        <option value="webcam">Webcam</option>
+                        <option value="ip_cam">IP Camera</option>
+                    </select>
+                </div>
+                <div class="mb-3" id="ip_cam_fields" style="display: none;">
+                    <label for="ip_address" class="form-label">IP Address:</label>
+                    <input type="text" class="form-control" id="ip_address" name="ip_address">
+                    <label for="username" class="form-label">Username:</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                    <label for="password" class="form-label">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>  
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+
+            <!-- Switch Camera Buttons -->
+            <div class="mt-3">
+                <button id="switch_to_webcam" class="btn btn-secondary">Switch to Webcam</button>
+                <button id="switch_to_ipcam" class="btn btn-secondary">Switch to IP Camera</button>
+            </div>
+
+            <!-- Video Feed -->
+            <div id="camera_feed" class="mt-3">
+                <img id="camera_feed_img" src="" alt="Video Feed">
+            </div>
+        </div>
+
+        <!-- Logs Tab Content -->
+        <div class="tab-pane fade" id="logs" role="tabpanel" aria-labelledby="logs-tab">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" class="form-control" id="startDate">
+                </div>
+                <div class="col-md-6">
+                    <label for="endDate">End Date:</label>
+                    <input type="date" class="form-control" id="endDate">
+                </div>
+            </div>
+                <table id="logsTable" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Message</th>
+                            <th>Created</th>
+                            <th>Capture</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logsTableBody">
+                        {% for entry in public_data %}
+                        <tr>
+                            <td>{{ entry['id'] }}</td>
+                            <td>{{ entry['msg'] }}</td>
+                            <td>{{ entry['created_at'] }}</td>
+                            <td><a href="{{ entry['url'] }}" target="_blank"><i class="bi bi-eye eye-icon"></i></a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var cameraForm = document.getElementById('camera_form');
+        var cameraTypeSelect = document.getElementById('camera_type');
+        var ipCamFields = document.getElementById('ip_cam_fields');
+        var cameraFeedImg = document.getElementById('camera_feed_img');
+        var switchToWebcamButton = document.getElementById('switch_to_webcam');
+        var switchToIpcamButton = document.getElementById('switch_to_ipcam');
+
+        // Show/Hide IP Camera fields based on selected camera type
+        cameraTypeSelect.addEventListener('change', function () {
+            if (cameraTypeSelect.value === 'ip_cam') {
+                ipCamFields.style.display = 'block';
+            } else {
+                ipCamFields.style.display = 'none';
+            }
+        });
+
+        // Function to update camera feed URL
+        function updateCameraFeed() {
+            var formData = new FormData(cameraForm);
+            fetch('/configure_camera', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    cameraFeedImg.src = data.feed_url_public; // Update image src with the video feed URL
+                } else {
+                    console.error('Error updating camera feed:', data.message);
+                }
+            })
+            .catch(error => console.error('Error updating camera feed:', error));
+        }
+
+        // Handle form submission
+        cameraForm.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+            updateCameraFeed(); // Call function to update camera feed
+        });
+
+        // Switch to Webcam
+        switchToWebcamButton.addEventListener('click', function () {
+            cameraTypeSelect.value = 'webcam';
+            ipCamFields.style.display = 'none';
+            updateCameraFeed();
+        });
+
+        // Switch to IP Camera
+        switchToIpcamButton.addEventListener('click', function () {
+            cameraTypeSelect.value = 'ip_cam';
+            ipCamFields.style.display = 'block';
+            updateCameraFeed();
+        });
+
+        // Initial update when page loads
+        updateCameraFeed();
+    });
+</script>
+
+{% endblock %}
