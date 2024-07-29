@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}Home Skota Surveillance{% endblock %}
+{% block content %}
+ <!-- Main Content -->
+ <div class="container mt-5">
+    <h2>Surveillance Dashboard Overview</h2>
+
+    <!-- Summary Cards -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <h5 class="card-title">Crime Behaviour Detections</h5>
+                    <p class="card-text">{{ crime_data|length }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-success">
+                <div class="card-body">
+                    <h5 class="card-title">Resources Area Detections</h5>
+                    <p class="card-text" id="criminal-detections">{{ resource_data|length }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-warning">
+                <div class="card-body">
+                    <h5 class="card-title">Public Area Detections</h5>
+                    <p class="card-text" id="resources-detections">{{ public_data|length }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <h3 class="mt-5">Recent Activity</h3>
+    <ul class="list-group" id="recent-activity">
+        <!-- Recent activity items will be inserted here -->
+        {% for crime in recent_crime %}
+        <li class="list-group-item">{{ crime['created_at'] }}: {{ crime['msg'] }} - <a href="{{ crime['url'] }}" target="_blank"><i class="bi bi-eye eye-icon-home"></i></a></li>
+        {% endfor %}
+
+        {% for resource in recent_resource %}
+        <li class="list-group-item">{{ resource['created_at'] }}: {{ resource['msg'] }} - <a href="{{ resource['url'] }}" target="_blank"><i class="bi bi-eye eye-icon-home"></i></a></li>
+        {% endfor %}
+
+        {% for public in recent_public %}
+        <li class="list-group-item">{{ public['created_at'] }}: {{ public['msg'] }} - <a href="{{ public['url'] }}" target="_blank"><i class="bi bi-eye eye-icon-home"></i></a></li>
+        {% endfor %}
+    </ul>
+
+    <!-- Charts -->
+    <h3 class="mt-5">Detection Trends</h3>
+    <div>
+        <canvas id="detection-trend-chart" width="400" height="200"></canvas>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const ctx = document.getElementById('detection-trend-chart').getContext('2d');
+
+        fetch('/chart-data')
+            .then(response => response.json())
+            .then(data => {
+                const detectionTrendChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: data.labels,
+                        datasets: [{
+                            label: 'Crime Detections',
+                            data: data.crime_detections,
+                            borderColor: 'rgba(0, 123, 255, 1)', // Blue - bg-primary
+                            backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                            borderWidth: 1,
+                            fill: false
+                        }, {
+                            label: 'Resource Detections',
+                            data: data.resource_detections,
+                            borderColor: 'rgba(40, 167, 69, 1)', // Green - bg-success
+                            backgroundColor: 'rgba(40, 167, 69, 0.2)',
+                            borderWidth: 1,
+                            fill: false
+                        }, {
+                            label: 'Public Detections',
+                            data: data.public_detections,
+                            borderColor: 'rgba(255, 193, 7, 1)', // Yellow - bg-warning
+                            backgroundColor: 'rgba(255, 193, 7, 0.2)',
+                            borderWidth: 1,
+                            fill: false
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Error fetching chart data:', error));
+    });
+</script>
+{% endblock %}

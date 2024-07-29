@@ -1,0 +1,19 @@
+.eye-icon {
+    background-color: #007bff; /* Bootstrap blue */
+    color: white;
+    padding: 5px;
+    border-radius: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+}
+.card {
+    margin: 20px 0;
+}
+body {
+    padding-top: 120px;
+    padding-bottom: 50px;
+}
